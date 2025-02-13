@@ -24,9 +24,33 @@ public class BookController {
         this.BookService = BookService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Book> getAllBooks() {
         return BookService.getAllBooks();
+    }
+
+    // Get books by title
+    @GetMapping("/title/{title}")
+    public List<Book> getBooksByTitle(@PathVariable String title) {
+        return BookService.findByTitle(title);
+    }
+
+    // Get books by author
+    @GetMapping("/author/{author}")
+    public List<Book> getBooksByAuthor(@PathVariable String author) {
+        return BookService.findByAuthor(author);
+    }
+
+    // Get books by genre
+    @GetMapping("/genre/{genre}")
+    public List<Book> getBooksByGenre(@PathVariable String genre) {
+        return BookService.findByGenre(genre);
+    }
+
+    // Get books by ISBN
+    @GetMapping("/isbn/{isbn}")
+    public List<Book> getBooksByIsbn(@PathVariable String isbn) {
+        return BookService.findByIsbn(isbn);
     }
 
     @GetMapping("/{id}")

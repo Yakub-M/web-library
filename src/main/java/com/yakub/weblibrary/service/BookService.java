@@ -21,6 +21,22 @@ public class BookService {
     public List<Book> getAllBooks() {
         return BookRepository.findAll();
     }
+    
+    public List<Book> findByTitle(String title) {
+        return BookRepository.findByTitleContainingIgnoreCase(title);
+    }
+
+    public List<Book> findByAuthor(String author) {
+        return BookRepository.findByAuthorContainingIgnoreCase(author);
+    }
+
+    public List<Book> findByGenre(String genre) {
+        return BookRepository.findByGenreContainingIgnoreCase(genre);
+    }
+
+    public List<Book> findByIsbn(String isbn) {
+        return BookRepository.findByIsbn(isbn);
+    }
 
     public Optional<Book> getBookById(String id) {
         return BookRepository.findById(id);
