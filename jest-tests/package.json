@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "seed-books": "node scripts/create-sample-books.js",
+    "clear-books": "node scripts/delete-sample-books.js"
   },
   "keywords": [],
   "author": "",

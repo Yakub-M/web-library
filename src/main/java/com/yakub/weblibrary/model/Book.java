@@ -21,12 +21,12 @@ public class Book {
 
     @NotBlank(message = "Title is required")
     @Size(min = 2, max = 100, message = "Title must be between 2 and 100 characters")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "Title can only contain Latin letters and spaces")
+    @Pattern(regexp = "^[A-Za-z -]+$", message = "Title can only contain Latin letters, spaces, and dashes")
     private String title;
 
     @NotBlank(message = "Author name is required")
     @Size(min = 2, max = 50, message = "Author name must be between 2 and 50 characters")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "Author name can only contain Latin letters and spaces")
+    @Pattern(regexp = "^[A-Za-z -]+$", message = "Author name can only contain Latin letters, spaces, and dashes")
     private String author;
 
     @NotNull(message = "Publication date is required")
@@ -34,7 +34,7 @@ public class Book {
 
     @NotBlank(message = "Genre is required")
     @Size(min = 3, max = 30, message = "Genre must be between 3 and 30 characters")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "Genre can only contain Latin letters and spaces")
+    @Pattern(regexp = "^[A-Za-z -]+$", message = "Genre can only contain Latin letters, spaces, and dashes")
     private String genre;
 
     @NotBlank(message = "ISBN is required")
