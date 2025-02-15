@@ -17,11 +17,17 @@ const sampleBooks = [
 ];
 
 async function createBooks() {
-  let bookIds = [];
+  // Log in as admin to obtain a token
+  const loginResponse = await request('http://localhost:8080')
+    .post('/api/auth/login')
+    .send({ username: 'admin', password: 'password' });
+  const adminToken = loginResponse.body.token;
 
+  let bookIds = [];
   for (const book of sampleBooks) {
     const response = await request(baseUrl)
       .post('/')
+      .set('Authorization', `Bearer ${adminToken}`)
       .send(book)
       .expect(201);
     

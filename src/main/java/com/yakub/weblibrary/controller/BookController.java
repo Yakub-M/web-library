@@ -2,14 +2,12 @@ package com.yakub.weblibrary.controller;
 
 import com.yakub.weblibrary.model.Book;
 import com.yakub.weblibrary.service.BookService;
+import com.yakub.weblibrary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import jakarta.validation.Valid;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +16,13 @@ import java.util.Optional;
 public class BookController {
 
     private final BookService BookService;
+    private final UserRepository UserRepository;
 
     @Autowired
-    public BookController(BookService BookService) {
+    public BookController(BookService BookService,
+                          UserRepository UserRepository) {
         this.BookService = BookService;
+        this.UserRepository = UserRepository;
     }
 
     @GetMapping("/")
@@ -58,6 +59,14 @@ public class BookController {
         Optional<Book> book = BookService.getBookById(id);
         return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
+    @DeleteMapping("/cleanup")
+    public ResponseEntity<?> cleanupTestUsers() {
+        UserRepository.deleteByUsername("testUser");
+        UserRepository.deleteByUsername("admin");
+        return ResponseEntity.ok("Test users deleted");
+    }
+
 
     @PostMapping("/")
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {

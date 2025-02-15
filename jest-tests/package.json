@@ -6,13 +6,15 @@
   "scripts": {
     "test": "jest",
     "seed-books": "node scripts/create-sample-books.js",
-    "clear-books": "node scripts/delete-sample-books.js"
+    "clear-books": "node scripts/delete-sample-books.js",
+    "cleanup": "node scripts/deleteTestUsers.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "axios": "^1.7.9"
   }
 }
